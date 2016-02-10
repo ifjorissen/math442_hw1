@@ -24,7 +24,6 @@ def update_coords(x, y, z, vx, vy, vz):
         z[i] = z[i] + vz[i]
 
 ############ Main:
-
 if (len(sys.argv) != 3):
     print("Required arguments: vector_length(N) and iterations_num(M)")
     sys.exit(-1)
@@ -46,7 +45,7 @@ t = timeit.timeit(stmt = "update_coords(x, y, z, vx, vy, vz)",
                   number = iters)
 
 chksum = sum(x) + sum(y) + sum(z)
-print("Mean time per coordinate: " + str(1000000 * t / (size * iters)) + "us")
+print("Mean time per coordinate: " + str(1000000 * t / (size * iters)) + " us")
 print("Final checksum is: " + str(chksum))
 
 exit(0)
