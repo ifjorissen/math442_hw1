@@ -38,7 +38,7 @@ for i in range(START_ORDER, MAX_ORDER):
     chksum = output.split(" ")[-1]
 
     #write to file
-    data_file.write("{!s}\t{!s}\t{!s}\t{!s}\t{!s}\t{!s}".format(j, i, size, iters, mean_time, chksum))
+    data_file.write("{!s}\t{!s}\t{!s}\t{!s}\t{!s}\t{!s}\n".format(j, i, size, iters, mean_time, chksum))
 
 
 exit(0)

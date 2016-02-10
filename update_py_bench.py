@@ -21,7 +21,7 @@ for i in range(START_ORDER, MAX_ORDER):
   size = 2**i
 
   #set the number of iterations to run
-  iters = int((MAX_ORDER - i)*(2**((MAX_ORDER - i)/2)))
+  iters = int((MAX_ORDER - i)*(2**((MAX_ORDER - i)/4)))
 
   #call update_locations.py 
   command = 'python3 update_locations.py {} {}'.format(size, iters)
