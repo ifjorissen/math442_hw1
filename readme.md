@@ -12,13 +12,15 @@ I used various code snippets, perhaps most notably an implementation of clock_ge
 
   * b) For each problem size, the update_locations.py script is run 10 times (as indicated by the RUNS constant in the update_py_bench.py script, and similarly in the others). This allows me to understand the amount of variation there is across a major run. 
 
+  * c) see the "figs" folder for images. For each port, there is a corresponding scatter plot which shows the mean time spent per coordinate (as a funciton of the number of objects in the system) for each of the RUNS (default, 10). 
+    * In the python scatter plot (benchmark_py_scatter.png) the difference in mean coodinate time is ~.03 microseconds. This seems to hold true for each of the problem sizes.  
+    * In the C(float) and C(double) scatter plots (benchmark_C_float_scatter.png and benchmark_C_double_scatter.png) the difference in mean coodinate time is much less consistent.
+    * The benchmarks are all compared in the plot benchmarks.png. It is clear that the original python version is much, much slower than either of the C ports (~30x slower). 
+    * benchmarks_C.png is a plot of the C ports using floats and doubles. It makes sense that the float version generally outperformed the version implemented with doubles. 
 
 #### Part 4: Port to ASM & Benchmark
   * To do ...
-
-#### Part 5: Estimate the amount of memory used by the program
-  * To do ...
-
+---
 
 ### Running this yourself
 #### Part 1: Benchmark Python

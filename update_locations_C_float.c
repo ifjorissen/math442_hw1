@@ -107,8 +107,8 @@ int main(int argc, char *argv[]){
   // output
   //convert nanoseconds to microseconds
   //convert seconds to microseconds
-  double micro_sec =  SEC_TO_MICRO * (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / NANO_TO_MICRO;
-  double mean_time = micro_sec/(size * iters);
+  float micro_sec =  SEC_TO_MICRO * (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / NANO_TO_MICRO;
+  float mean_time = micro_sec/(size * iters);
   printf("Mean time per coordinate: %f us\n", mean_time);
   printf("Final checksum is: %f", chksum);
 

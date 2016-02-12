@@ -26,7 +26,7 @@ for i in range(START_ORDER, MAX_ORDER):
   #call update_locations.py 
   command = './update_locations_C_double.o {} {}'.format(size, iters)
   print("running {} runs with {} points and updating {} times".format(RUNS, size, iters))
-
+  means = 0
   for j in range(RUNS):
 
     #obtain & decode the output so we can write the relevant data to a file
@@ -34,11 +34,13 @@ for i in range(START_ORDER, MAX_ORDER):
     output = out.decode(encoding="utf-8")
     
     # output is of the form: "Mean time per coordinate: 8.194499969249591 us Final checksum is: 1233.3683773560347" 
-    mean_time = output.split(" ")[4]
+    mean_time = float(output.split(" ")[4])
     chksum = output.split(" ")[-1]
 
     #write to file
-    data_file.write("{!s}\t{!s}\t{!s}\t{!s}\t{!s}\t{!s}\n".format(j, i, size, iters, mean_time, chksum))
+    means += mean_time
+
+  data_file.write("{!s}\t{!s}\t{!s}\t{!s}\t{!s}\t{!s}\n".format(RUNS, i, size, iters, means/RUNS, chksum))
 
 
 exit(0)

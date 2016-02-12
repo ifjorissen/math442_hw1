@@ -26,7 +26,7 @@ for i in range(START_ORDER, MAX_ORDER):
   #call update_locations.py 
   command = 'python3 update_locations.py {} {}'.format(size, iters)
   print("running {} runs with {} points and updating {} times".format(RUNS, size, iters))
-
+  means = 0
   for j in range(RUNS):
 
     #obtain & decode the output so we can write the relevant data to a file
@@ -36,9 +36,9 @@ for i in range(START_ORDER, MAX_ORDER):
     # output is of the form: "Mean time per coordinate: 8.194499969249591 us Final checksum is: 1233.3683773560347" 
     mean_time = output.split(" ")[4]
     chksum = output.split(" ")[-1]
-
+    means += float(mean_time)
     #write to file
-    data_file.write("{!s}\t{!s}\t{!s}\t{!s}\t{!s}\t{!s}".format(j, i, size, iters, mean_time, chksum))
+  data_file.write("{!s}\t{!s}\t{!s}\t{!s}\t{!s}\t{!s}".format(j, i, size, iters, means/RUNS, chksum))
 
 
 exit(0)
