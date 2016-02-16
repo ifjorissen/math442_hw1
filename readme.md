@@ -44,7 +44,7 @@ I used various code snippets, perhaps most notably an implementation of clock_ge
       ```
 
   * C(double) memcheck results:
-   * ```
+    * ```
       ==14266== Command: ./update_locations_C_double.o 1048576 11
       ==14266== Parent PID: 53159
       ==14266== 
