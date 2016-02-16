@@ -42,6 +42,7 @@ I used various code snippets, perhaps most notably an implementation of clock_ge
       ==14345==     in use at exit: 26,621 bytes in 191 blocks
       ==14345==   total heap usage: 281 allocs, 90 frees, 25,198,685 bytes allocated
       ```
+
   * C(double) memcheck results:
    * ```
       ==14266== Command: ./update_locations_C_double.o 1048576 11
@@ -53,6 +54,7 @@ I used various code snippets, perhaps most notably an implementation of clock_ge
       ==14266==   total heap usage: 281 allocs, 90 frees, 50,364,509 bytes allocated
       ==14266==
       ```
+      
   * ASM(float) memcheck results:
     * ```
       ==33639== Command: ./update_locations_asm.o 1048576 11
