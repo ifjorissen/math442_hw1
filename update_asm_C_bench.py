@@ -13,7 +13,7 @@ MAX_ORDER = 25
 RUNS = 10
 
 #intialize datafile
-data_file = open('data/benchmark_data_C_float.txt', 'w')
+data_file = open('data/benchmark_data_asm.txt', 'w')
 data_file.write("Run\t Order\t Problem Size\t Iterations\t Mean Time\t Checksum\n")
 
 for i in range(START_ORDER, MAX_ORDER):
@@ -24,7 +24,7 @@ for i in range(START_ORDER, MAX_ORDER):
   iters = int((MAX_ORDER - i)*(2**((MAX_ORDER - i)/2)))
 
   #call update_locations.py 
-  command = './update_locations_C_float.o {} {}'.format(size, iters)
+  command = './update_locations_asm.o {} {}'.format(size, iters)
   print("running {} runs with {} points and updating {} times".format(RUNS, size, iters))
   means=0
   for j in range(RUNS):
