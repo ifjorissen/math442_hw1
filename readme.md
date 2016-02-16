@@ -33,7 +33,7 @@ I used various code snippets, perhaps most notably an implementation of clock_ge
   * I used two of valgrind's tools, memcheck and massif, to understand more about how much memory was being used in each of the three programs. As I understand it, memcheck outputs a summary of total bytes allocates & freed throughout the lifetime of the program, while massif outputs (as its default) much more verbose output detailing when and how memory was being used, allocated, freed, etc during the programs execution. Since we only allocated memory once (when we generated the random x,y,z and vx,vy,vz arrays) I found these two tools to be relatively consistent in their results. 
 
   * C(Float) memcheck results:
-    * ```
+      ```
       ==14345== Command: ./update_locations_C_float.o 1048576 11
       ==14345== Parent PID: 53159
       ==14345== 
@@ -42,9 +42,10 @@ I used various code snippets, perhaps most notably an implementation of clock_ge
       ==14345==     in use at exit: 26,621 bytes in 191 blocks
       ==14345==   total heap usage: 281 allocs, 90 frees, 25,198,685 bytes allocated
       ```
-
-  * C(double) memcheck results:
-    * ```
+    * (file: memory/c_float_mem_memcheck.txt)
+  * C(double) memcheck results: 
+    * (file: memory/c_double_mem_memcheck.txt)
+    ```
       ==14266== Command: ./update_locations_C_double.o 1048576 11
       ==14266== Parent PID: 53159
       ==14266== 
@@ -53,10 +54,10 @@ I used various code snippets, perhaps most notably an implementation of clock_ge
       ==14266==     in use at exit: 26,621 bytes in 191 blocks
       ==14266==   total heap usage: 281 allocs, 90 frees, 50,364,509 bytes allocated
       ==14266==
-      ```
-      
+    ```
+
   * ASM(float) memcheck results:
-    * ```
+      ```
       ==33639== Command: ./update_locations_asm.o 1048576 11
       ==33639== Parent PID: 33067
       ==33639== 
@@ -66,7 +67,8 @@ I used various code snippets, perhaps most notably an implementation of clock_ge
       ==33639==   total heap usage: 281 allocs, 90 frees, 25,198,685 bytes allocated
       ==33639==  
       ```
-
+    * (file: memory/asm_mem_memcheck.txt)
+      
   * It makes sense that the ASM and float ports used the same amount of memory, since they both used floating types and were basically the same program except the update_coordinates function called a loop written with inline assembly instead of a standard C loop. It also makes sense that the amount of memory used in update_locations_C_double.c was 2x the amount used in either the asm or float implementations, since the size of a double is 2x the size of a floating point number. Finally, the number of memory allocations, frees, and blocks remained consistent across all three implementations because they all used the same calling scheme (insofar as they all followed the same set of instructions with respect to memory allocation, useage, and deallocation.)
   * For the raw, detailed, complete results, see the `memory` folder.
 
@@ -111,4 +113,3 @@ I used various code snippets, perhaps most notably an implementation of clock_ge
       * `valgrind --tool=memcheck --log-file='memory/c_double_mem_memcheck.txt' ./update_locations_C_double.o 1048576 11`
       * `valgrind --tool=memcheck --log-file='memory/c_float_mem_memcheck.txt' ./update_locations_C_float.o 1048576 11`
       * `valgrind --tool=memcheck --log-file='memory/asm_mem_memcheck.txt' ./update_locations_asm.o 1048576 11`
-
